@@ -75,7 +75,7 @@ public class ScoreboardTweaksConfig {
                                         .name(Text.literal("Number Color"))
                                         .description(OptionDescription.of(Text.of("Number color.")))
                                         .binding(defaults.scoreColor, () -> config.scoreColor, value -> config.scoreColor = value)
-                                        .customController(opt -> new ColorController(opt, true))
+                                        .customController(opt -> new ColorController(opt, false))
                                         .build())
                                 .option(Option.<Color>createBuilder()
                                         .name(Text.literal("Header Color"))
