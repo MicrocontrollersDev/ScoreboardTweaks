@@ -1,0 +1,21 @@
+{
+  "scoreboard-tweaks.scoreboard-tweaks": "Scoreboard Tweaks",
+  "scoreboard-tweaks.remove-scoreboard": "Remove Scoreboard",
+  "scoreboard-tweaks.remove-scoreboard.description": "Remove the scoreboard entirely.",
+  "scoreboard-tweaks.remove-scoreboard-in-debug-hud": "Remove Scoreboard in Debug HUD",
+  "scoreboard-tweaks.remove-scoreboard-in-debug-hud.description": "scoreboard when the debug ",
+  "scoreboard-tweaks.remove-score": "Remove Score",
+  "scoreboard-tweaks.remove-score.description": "Remove the score entirely.",
+  "scoreboard-tweaks.number-color": "Number Color",
+  "scoreboard-tweaks.number-color.description": "Number color.",
+  "scoreboard-tweaks.header-color": "Header Color",
+  "scoreboard-tweaks.header-color.description": "Header color.",
+  "scoreboard-tweaks.body-color": "Body Color",
+  "scoreboard-tweaks.body-color.description": "Body color.",
+  "scoreboard-tweaks.add-header-text-shadow": "Add Header Text Shadow",
+  "scoreboard-tweaks.add-header-text-shadow.description": "Add shadow to the header text.",
+  "scoreboard-tweaks.add-body-text-shadow": "Add Body Text Shadow",
+  "scoreboard-tweaks.add-body-text-shadow.description": "Add shadow to the body text.",
+  "scoreboard-tweaks.add-number-text-shadow": "Add Number Text Shadow",
+  "scoreboard-tweaks.add-number-text-shadow.description": "Add shadow to the number text."
+}
