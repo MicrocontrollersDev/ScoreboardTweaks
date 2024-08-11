@@ -1,6 +1,7 @@
 package dev.microcontrollers.scoreboardtweaks.config;
 
 import dev.isxander.yacl3.api.*;
+import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder;
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
@@ -30,6 +31,8 @@ public class ScoreboardTweaksConfig {
     @SerialEntry public boolean headerShadow = false;
     @SerialEntry public boolean bodyShadow = false;
     @SerialEntry public boolean numberShadow = false;
+    @SerialEntry public int moveHorizontally = 0;
+    @SerialEntry public int moveVertically = 0;
 
     public static Screen configScreen(Screen parent) {
         return YetAnotherConfigLib.create(CONFIG, ((defaults, config, builder) -> builder
@@ -103,6 +106,22 @@ public class ScoreboardTweaksConfig {
                                 .description(OptionDescription.of(Text.translatable("scoreboard-tweaks.add-number-text-shadow.description")))
                                 .binding(defaults.numberShadow, () -> config.numberShadow, newVal -> config.numberShadow = newVal)
                                 .controller(TickBoxControllerBuilder::create)
+                                .build())
+                        .option(Option.<Integer>createBuilder()
+                                .name(Text.translatable("scoreboard-tweaks.move-horizontally"))
+                                .description(OptionDescription.of(Text.translatable("scoreboard-tweaks.move-horizontally.description")))
+                                .binding(0, () -> config.moveVertically, newVal -> config.moveVertically = newVal)
+                                .controller(opt -> IntegerSliderControllerBuilder.create(opt)
+                                        .range(0, 1200)
+                                        .step(1))
+                                .build())
+                        .option(Option.<Integer>createBuilder()
+                                .name(Text.translatable("scoreboard-tweaks.move-vertically"))
+                                .description(OptionDescription.of(Text.translatable("scoreboard-tweaks.move-vertically.description")))
+                                .binding(0, () -> config.moveHorizontally, newVal -> config.moveHorizontally = newVal)
+                                .controller(opt -> IntegerSliderControllerBuilder.create(opt)
+                                        .range(-400, 400)
+                                        .step(1))
                                 .build())
                         .build())
         )).generateScreen(parent);

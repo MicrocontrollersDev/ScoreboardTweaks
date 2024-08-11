@@ -17,5 +17,9 @@
   "scoreboard-tweaks.add-body-text-shadow": "Add Body Text Shadow",
   "scoreboard-tweaks.add-body-text-shadow.description": "Add shadow to the body text.",
   "scoreboard-tweaks.add-number-text-shadow": "Add Number Text Shadow",
-  "scoreboard-tweaks.add-number-text-shadow.description": "Add shadow to the number text."
+  "scoreboard-tweaks.add-number-text-shadow.description": "Add shadow to the number text.",
+  "scoreboard-tweaks.move-horizontally": "Move Horizontally",
+  "scoreboard-tweaks.move-horizontally.description": "Moves the scoreboard horizontally in the x direction.",
+  "scoreboard-tweaks.move-vertically": "Move Vertically",
+  "scoreboard-tweaks.move-vertically.description": "Moves the scoreboard vertically in the y direction."
 }
