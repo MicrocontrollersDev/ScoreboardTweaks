@@ -1,6 +1,7 @@
 package dev.microcontrollers.scoreboardtweaks.config;
 
 import dev.isxander.yacl3.api.*;
+import dev.isxander.yacl3.api.controller.FloatSliderControllerBuilder;
 import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder;
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
@@ -22,9 +23,10 @@ public class ScoreboardTweaksConfig {
 
     @SerialEntry public boolean removeScoreboard = false;
     @SerialEntry public boolean removeScoreboardInDebugHud = false;
-//    @SerialEntry public float scale = 1F;
+    @SerialEntry public float scale = 1F;
+    @SerialEntry public int maxLines = 15;
     @SerialEntry public boolean removeScore = false;
-//    @SerialEntry public boolean removeOnlySequentialScore = true;
+    @SerialEntry public boolean removeOnlySequentialScore = true;
     @SerialEntry public Color scoreColor = new Color(16733525);
     @SerialEntry public Color headerColor = new Color(0, 0, 0, 102);
     @SerialEntry public Color bodyColor = new Color(0, 0, 0, 76);
@@ -51,26 +53,34 @@ public class ScoreboardTweaksConfig {
                                 .binding(defaults.removeScoreboardInDebugHud, () -> config.removeScoreboardInDebugHud, newVal -> config.removeScoreboardInDebugHud = newVal)
                                 .controller(TickBoxControllerBuilder::create)
                                 .build())
-//                                .option(Option.<Float>createBuilder()
-//                                        .name(Text.translatable("Scoreboard Scale"))
-//                                        .description(OptionDescription.of(Text.translatable("Scales the scoreboard by the specified amount.")))
-//                                        .binding(1F, () -> config.scale, newVal -> config.scale = newVal)
-//                                        .controller(opt -> FloatSliderControllerBuilder.create(opt)
-//                                                .range(0.1F, 3F)
-//                                                .step(0.1F))
-//                                        .build())
+                        .option(Option.<Float>createBuilder()
+                                .name(Text.translatable("scoreboard-tweaks.scoreboard-scale"))
+                                .description(OptionDescription.of(Text.translatable("scoreboard-tweaks.scoreboard-scale.description")))
+                                .binding(1F, () -> config.scale, newVal -> config.scale = newVal)
+                                .controller(opt -> FloatSliderControllerBuilder.create(opt)
+                                        .range(0.1F, 3F)
+                                        .step(0.1F))
+                                .build())
+                        .option(Option.<Integer>createBuilder()
+                                .name(Text.translatable("scoreboard-tweaks.max-lines"))
+                                .description(OptionDescription.of(Text.translatable("scoreboard-tweaks.max-lines.description")))
+                                .binding(15, () -> config.maxLines, newVal -> config.maxLines = newVal)
+                                .controller(opt -> IntegerSliderControllerBuilder.create(opt)
+                                        .range(1, 30)
+                                        .step(1))
+                                .build())
                         .option(Option.<Boolean>createBuilder()
                                 .name(Text.translatable("scoreboard-tweaks.remove-score"))
                                 .description(OptionDescription.of(Text.translatable("scoreboard-tweaks.remove-score.description")))
                                 .binding(defaults.removeScore, () -> config.removeScore, newVal -> config.removeScore = newVal)
                                 .controller(TickBoxControllerBuilder::create)
                                 .build())
-//                                .option(Option.<Boolean>createBuilder()
-//                                        .name(Text.translatable("Remove Only Sequential Score"))
-//                                        .description(OptionDescription.of(Text.translatable("Remove the score only when the numbers are sequential. This means the numbers won't show when on, for example, Hypxiel lobbies where they only exist for ordering the components.")))
-//                                        .binding(defaults.removeOnlySequentialScore, () -> config.removeOnlySequentialScore, newVal -> config.removeOnlySequentialScore = newVal)
-//                                        .controller(TickBoxControllerBuilder::create)
-//                                        .build())
+                        .option(Option.<Boolean>createBuilder()
+                                .name(Text.translatable("scoreboard-tweaks.remove-only-sequential-score"))
+                                .description(OptionDescription.of(Text.translatable("scoreboard-tweaks.remove-only-sequential-score.description")))
+                                .binding(defaults.removeOnlySequentialScore, () -> config.removeOnlySequentialScore, newVal -> config.removeOnlySequentialScore = newVal)
+                                .controller(TickBoxControllerBuilder::create)
+                                .build())
                         .option(Option.<Color>createBuilder()
                                 .name(Text.translatable("scoreboard-tweaks.number-color"))
                                 .description(OptionDescription.of(Text.translatable("scoreboard-tweaks.number-color.description")))
