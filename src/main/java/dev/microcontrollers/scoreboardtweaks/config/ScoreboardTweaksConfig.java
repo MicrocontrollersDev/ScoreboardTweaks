@@ -42,7 +42,7 @@ public class ScoreboardTweaksConfig {
                 .category(ConfigCategory.createBuilder()
                         .name(Text.translatable("scoreboard-tweaks.scoreboard-tweaks"))
                         .option(Option.<Boolean>createBuilder()
-                                .name(Text.translatable("scoreboard-tweaks.remove-score"))
+                                .name(Text.translatable("scoreboard-tweaks.remove-scoreboard"))
                                 .description(OptionDescription.of(Text.translatable("scoreboard-tweaks.remove-scoreboard.description")))
                                 .binding(defaults.removeScoreboard, () -> config.removeScoreboard, newVal -> config.removeScoreboard = newVal)
                                 .controller(TickBoxControllerBuilder::create)

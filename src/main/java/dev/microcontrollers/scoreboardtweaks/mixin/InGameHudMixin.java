@@ -34,13 +34,14 @@ public class InGameHudMixin {
     @Inject(method = "renderScoreboardSidebar(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/scoreboard/ScoreboardObjective;)V", at = @At("HEAD"), cancellable = true)
     private void cancelScoreboardRendering(DrawContext context, ScoreboardObjective objective, CallbackInfo ci) {
         if (ScoreboardTweaksConfig.CONFIG.instance().removeScoreboard) ci.cancel();
-        //#if MC >= 1.20.4
-        if (ScoreboardTweaksConfig.CONFIG.instance().removeScoreboardInDebugHud && this.debugHud.shouldShowDebugHud()) {
-        //#else
-        //$$ if (ScoreboardTweaksConfig.CONFIG.instance().removeScoreboardInDebugHud && MinecraftClient.getInstance().options.debugEnabled) {
-        //#endif
+        if (ScoreboardTweaksConfig.CONFIG.instance().removeScoreboardInDebugHud &&
+                //#if MC >= 1.20.4
+                this.debugHud.shouldShowDebugHud()
+                //#else
+                //$$ MinecraftClient.getInstance().options.debugEnabled
+                //#endif
+        )
             ci.cancel();
-        }
     }
 
     @Inject(method = "renderScoreboardSidebar(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/scoreboard/ScoreboardObjective;)V", at = @At("HEAD"))
@@ -97,9 +98,8 @@ public class InGameHudMixin {
         int[] scorePoints = objective.getScoreboard().getScoreboardEntries(objective).stream().mapToInt(ScoreboardEntry::value).limit(ScoreboardTweaksConfig.CONFIG.instance().maxLines).sorted().toArray();
         if (scorePoints.length > 1) {
             for (int line = 1; line < scorePoints.length; line++) {
-                if (scorePoints[line] != scorePoints[line - 1] + 1) { // check if the score is just 1 higher than previous
+                if (scorePoints[line] != scorePoints[line - 1] + 1) // check if the score is just 1 higher than previous
                     return true;
-                }
             }
         }
         return false;
@@ -130,18 +130,19 @@ public class InGameHudMixin {
         return ScoreboardTweaksConfig.CONFIG.instance().numberShadow;
     }
 
+    // TODO: make these injections better. for some reason im unable to target them normally so i've had to resort to using name.
     @ModifyVariable(method = "method_55440", at = @At("STORE"), name = "m")
-    private int pos1(int value) {
+    private int moveHorizontalPosition(int value) {
         return value - ScoreboardTweaksConfig.CONFIG.instance().moveHorizontally;
     }
 
     @ModifyVariable(method = "method_55440", at = @At("STORE"), name = "o")
-    private int pos2(int value) {
+    private int moveVerticalPosition(int value) {
         return value - ScoreboardTweaksConfig.CONFIG.instance().moveVertically;
     }
 
     @ModifyVariable(method = "method_55440", at = @At("STORE"), name = "p")
-    private int pos3(int value) {
+    private int moveVerticalPosition2(int value) {
         return value - ScoreboardTweaksConfig.CONFIG.instance().moveVertically;
     }
 }
