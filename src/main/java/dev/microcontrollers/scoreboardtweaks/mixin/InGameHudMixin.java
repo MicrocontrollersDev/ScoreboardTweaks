@@ -97,7 +97,7 @@ public class InGameHudMixin {
     private static boolean isNonConsecutive(ScoreboardObjective objective) {
         int[] scorePoints = objective.getScoreboard().getScoreboardEntries(objective).stream().mapToInt(ScoreboardEntry::value).limit(ScoreboardTweaksConfig.CONFIG.instance().maxLines).sorted().toArray();
         if (scorePoints.length > 1) {
-            for (int line = 30 - scorePoints.length; line < scorePoints.length - 1; line++) { //TODO: we use 30 as its the max allowed in the config. this ideally needs to be reworked to a better system
+            for (int line = Integer.MAX_VALUE - scorePoints.length; line < scorePoints.length - 1; line++) { // this is a dumb way to bypass issues when using the custom max line option
                 if (scorePoints[line + 1] != scorePoints[line] + 1) // check if the score is just 1 higher than previous
                     return true;
             }
