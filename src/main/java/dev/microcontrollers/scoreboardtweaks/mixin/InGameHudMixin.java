@@ -12,13 +12,11 @@ import net.minecraft.scoreboard.number.BlankNumberFormat;
 import net.minecraft.scoreboard.number.NumberFormat;
 import net.minecraft.scoreboard.number.StyledNumberFormat;
 import net.minecraft.text.Style;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+@Debug(export = true)
 @Mixin(InGameHud.class)
 public class InGameHudMixin {
     @Shadow
@@ -130,18 +128,17 @@ public class InGameHudMixin {
         return ScoreboardTweaksConfig.CONFIG.instance().numberShadow;
     }
 
-    // TODO: make these injections better. for some reason im unable to target them normally so i've had to resort to using name.
-    @ModifyVariable(method = "method_55440", at = @At("STORE"), name = "m")
+    @ModifyVariable(method = "method_55440", at = @At("STORE"), ordinal = 4)
     private int moveHorizontalPosition(int value) {
         return value - ScoreboardTweaksConfig.CONFIG.instance().moveHorizontally;
     }
 
-    @ModifyVariable(method = "method_55440", at = @At("STORE"), name = "o")
+    @ModifyVariable(method = "method_55440", at = @At("STORE"), ordinal = 6)
     private int moveVerticalPosition(int value) {
         return value - ScoreboardTweaksConfig.CONFIG.instance().moveVertically;
     }
 
-    @ModifyVariable(method = "method_55440", at = @At("STORE"), name = "p")
+    @ModifyVariable(method = "method_55440", at = @At("STORE"), ordinal = 7)
     private int moveVerticalPosition2(int value) {
         return value - ScoreboardTweaksConfig.CONFIG.instance().moveVertically;
     }
