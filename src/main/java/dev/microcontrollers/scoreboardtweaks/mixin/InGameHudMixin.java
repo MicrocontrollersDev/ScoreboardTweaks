@@ -16,7 +16,6 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Debug(export = true)
 @Mixin(InGameHud.class)
 public class InGameHudMixin {
     @Shadow
