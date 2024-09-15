@@ -1,3 +1,5 @@
+# Moved to https://codeberg.org/MicrocontrollersDev/ScoreboardTweaks
+
 # Scoreboard Tweaks
 
 Improvements and customization for Minecraft's Scoreboard/Sidebar
